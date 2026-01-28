@@ -73,7 +73,42 @@ const Suggestion = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const BASE = import.meta.env.VITE_API_URL || '';
+
+  const postSuggestion = async (data) => {
+    const url = `${BASE}/api/suggestions`;
+    console.log('Posting suggestion to', url);
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      // clone the response so we can attempt multiple readers (json or text)
+      const clone = res.clone();
+      let body;
+      try {
+        body = await res.json();
+      } catch {
+        // fall back to text (use clone to avoid "body already read")
+        try {
+          const text = await clone.text();
+          body = { text };
+        } catch {
+          body = { text: `Unable to read body (status ${res.status})` };
+        }
+      }
+      const message = body && (body.message || body.text) ? (body.message || body.text) : `HTTP ${res.status}`;
+      console.error('postSuggestion non-OK response', res.status, message);
+      const e = new Error(String(message).slice(0, 200)); // keep short
+      e.status = res.status;
+      e.body = body;
+      throw e;
+    }
+    return res.json();
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setStatus(null);
@@ -93,17 +128,26 @@ const Suggestion = () => {
       return;
     }
 
-    const ok = saveToLocal(formData);
-    setTimeout(() => {
-      setSaving(false);
-      if (ok) {
-        setStatus({ type: "success", message: "धन्यवाद! तपाईंको सुझाव सुरक्षित भयो।" });
+    try {
+      await postSuggestion(formData);
+      setStatus({ type: 'success', message: 'धन्यवाद! तपाईंको सुझाव सुरक्षित भयो।' });
+      setFormData({ ...emptyData });
+      if (formRef.current) formRef.current.reset();
+    } catch (err) {
+      console.error('postSuggestion failed', err);
+      // if network or server error, fallback to localStorage to avoid data loss
+      const fallback = saveToLocal(formData);
+      if (fallback) {
+        setStatus({ type: 'success', message: 'इंटरनेट नभए स्थानीय रूपमा सुरक्षित गरियो — पछि सिङ्क गरिनेछ।' });
         setFormData({ ...emptyData });
         if (formRef.current) formRef.current.reset();
       } else {
-        setStatus({ type: "error", message: "सेभ गर्दा समस्या आयो — कृपया पुन: प्रयास गर्नुहोस्।" });
+        const msg = err && err.message ? err.message : 'सेभ गर्दा समस्या आयो — कृपया पुन: प्रयास गर्नुहोस्।';
+        setStatus({ type: 'error', message: msg });
       }
-    }, 450);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (

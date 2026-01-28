@@ -1,0 +1,132 @@
+/* Simple admin panel styles */
+.admin-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.sidebar {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 12px;
+    height: calc(100vh - 120px);
+    overflow: auto;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.suggestion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.suggestion-item {
+    display: block;
+    text-align: left;
+    padding: 10px;
+    border-radius: 6px;
+    background: #fafafa;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f3f6ff;
+}
+
+.suggestion-item.active {
+    border-color: #d0d7ff;
+    background: #eef2ff;
+}
+
+.si-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.si-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 6px
+}
+
+.muted {
+    color: #666;
+    font-size: 12px
+}
+
+.status-pill {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px
+}
+
+.status-new {
+    background: #ffeedd
+}
+
+.status-in_progress {
+    background: #fff4cc
+}
+
+.status-resolved {
+    background: #e6ffed
+}
+
+.main {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 18px;
+    min-height: 400px;
+}
+
+.suggestion-detail header h2 {
+    margin: 0;
+}
+
+.suggestion-detail .meta {
+    color: #666;
+    margin-top: 6px
+}
+
+.detail-section {
+    margin-top: 12px
+}
+
+.actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px
+}
+
+.actions .danger {
+    background: #ffecec;
+    border: 1px solid #ffcccc
+}
+
+.empty {
+    color: #666;
+    padding: 40px;
+    text-align: center
+}
+
+@media (max-width: 800px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        height: auto
+    }
+}
