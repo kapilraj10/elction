@@ -19,7 +19,12 @@ export default function Login() {
             const res = await authService.login({ email, password });
             authService.saveAuth(res.token, res.user);
             toast.success('सफलतापूर्वक लगइन भयो');
-            navigate('/');
+            // redirect admin users to admin panel
+            if (res.user && res.user.role === 'admin') {
+                navigate('/admin');
+            } else {
+                navigate('/');
+            }
         } catch (err) {
             setError(err?.message || 'Login failed');
         } finally {

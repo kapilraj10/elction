@@ -5,6 +5,7 @@ import Home from './components/Home/Home.jsx';
 import Commitment from './components/Commitment/Commitment.jsx';
 import Suggestions from './components/Suggestions/Suggestion.jsx';
 import Login from './components/Login/Login.jsx';
+import Admin from './page/Admin/Admin.jsx';
 import './App.css';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/commitment" element={<Commitment />} />
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );

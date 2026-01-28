@@ -34,4 +34,18 @@ export function getAuth() {
     return { token: localStorage.getItem('token'), user: JSON.parse(localStorage.getItem('user') || 'null') };
 }
 
-export default { login, register, saveAuth, clearAuth, getAuth };
+export async function me() {
+    const { token } = getAuth();
+    if (!token) throw new Error('No token');
+    const res = await fetch(`${BASE}/api/auth/me`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw err;
+    }
+    return res.json();
+}
+
+export default { login, register, saveAuth, clearAuth, getAuth, me };
