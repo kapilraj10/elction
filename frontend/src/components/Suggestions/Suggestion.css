@@ -1,0 +1,190 @@
+/* Suggestion page styles - polished and responsive */
+.suggestion-page.container {
+    max-width: 980px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.suggestion-card {
+    background: #ffffff;
+    border: 1px solid #eef6f3;
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(11, 33, 48, 0.04);
+}
+
+.suggestion-header h1 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
+}
+
+.suggestion-header .subtitle {
+    margin: 0 0 1rem 0;
+    color: #46656a;
+}
+
+.contact-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-label {
+    color: #23404a;
+    font-weight: 700;
+}
+
+.contact-link {
+    color: #0b8b5a;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.notice {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.notice-success {
+    background: #eefaf4;
+    color: #0b6b45;
+    border: 1px solid #d7f0e1;
+}
+
+.notice-error {
+    background: #fff2f0;
+    color: #8b2626;
+    border: 1px solid #ffd6d4;
+}
+
+.suggestion-form label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #14363b;
+    font-weight: 600;
+}
+
+.suggestion-form input,
+.suggestion-form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #e8f1ef;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+    box-sizing: border-box;
+}
+
+.suggestion-form select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #e8f1ef;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.address-field {
+    border-top: 1px dashed #eef6f4;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.address-field legend {
+    font-weight: 700;
+    color: #14363b;
+    margin-bottom: 0.5rem;
+}
+
+.suggestion-form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.row.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.checkbox-inline {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.35rem;
+    border-radius: 6px;
+    background: #fbfffb;
+    border: 1px solid #f0f6f4;
+}
+
+.checkbox-inline input {
+    transform: scale(1.05);
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0b8b5a 0%, #0a6b48 100%);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary[disabled] {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid #eef6f3;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 820px) {
+    .row.two-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* small accessibility focus styles */
+.suggestion-form input:focus,
+.suggestion-form textarea:focus,
+.checkbox-inline input:focus {
+    outline: 3px solid rgba(11, 139, 90, 0.12);
+    outline-offset: 2px;
+}

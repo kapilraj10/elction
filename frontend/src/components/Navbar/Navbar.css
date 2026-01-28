@@ -1,0 +1,104 @@
+/* Main navbar */
+.nc-navbar {
+    background: linear-gradient(90deg,
+            #0b5ed7,
+            #0d6efd);
+    /* Congress blue */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100vw;
+    /* ensure it spans the full viewport width */
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    /* remove any accidental margins */
+    box-sizing: border-box;
+}
+
+/* Logo circle */
+.nc-logo {
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    color: #0d6efd;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Brand text */
+.brand-text {
+    line-height: 1.1;
+}
+
+.brand-name {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.brand-sub {
+    font-size: 12px;
+    color: #e0e7ff;
+}
+
+/* Nav links */
+.nc-link {
+    background: none;
+    border: none;
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+}
+
+.nc-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+}
+
+/* Active link */
+.nc-link.active {
+    background: #ffffff;
+    color: #0d6efd !important;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* Toggler color */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive spacing */
+/* Make the navbar inner content match the main content width (centered) */
+.nc-navbar>.container-fluid {
+    width: 100%;
+    max-width: 1100px;
+    /* match your main content max-width */
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+
+    /* Stack brand and toggler nicely on small screens */
+    .nc-logo {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+}
