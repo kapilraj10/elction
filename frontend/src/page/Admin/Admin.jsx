@@ -4,12 +4,29 @@ import "./Admin.css";
 
 const Admin = () => {
   const navigate = useNavigate();
-  const adminName = "Admin"; // you can replace this dynamically later
+  const adminName = "Admin"; 
 
   const handleLogout = () => {
-    // localStorage.removeItem("token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+
+
     navigate("/login");
   };
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if ( hour >= 5  && hour < 12){
+        return "Good Morining";
+    } else if (hour >= 12 && hour < 17){
+        return "Good Afternoon";
+    } else if (hour >= 17 && hour < 21){
+        return "Good Evening";
+    } else {
+        return "Good Night";
+    }
+  }
 
   return (
     <div className="admin-container">
@@ -18,6 +35,9 @@ const Admin = () => {
         <h2>Admin Panel</h2>
 
         <ul>
+            <li>
+                <Link to="/admin/dashboard">Dashboard</Link>
+            </li>
           <li>
             <Link to="/admin/suggestions">Suggestions</Link>
           </li>
@@ -36,7 +56,7 @@ const Admin = () => {
       <div className="admin-content-wrapper">
         {/* Top Navbar */}
         <div className="admin-topbar">
-          <h3>Hello, Good Morning {adminName} </h3>
+          <h3>Hello,{adminName}  {getGreeting()}  </h3>
         </div>
 
         {/* Dynamic Content */}

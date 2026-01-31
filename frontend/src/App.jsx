@@ -6,6 +6,7 @@ import Commitment from './components/Commitment/Commitment.jsx';
 import Suggestions from './components/Suggestions/Suggestion.jsx';
 import Login from './components/Login/Login.jsx';
 import Admin from './page/Admin/Admin.jsx';
+import Dashboard from './page/Dashboard/Dashboard.jsx';
 import './App.css';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />}>
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="suggestions" element={<Suggestions />} />
           <Route path="commitments" element={<Commitment />} />
         </Route>
