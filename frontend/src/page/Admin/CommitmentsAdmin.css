@@ -1,0 +1,22 @@
+.commitments-admin .card {
+    border-radius: 6px;
+}
+
+.commitments-admin .table td,
+.commitments-admin .table th {
+    vertical-align: middle;
+}
+
+.commitments-admin .commitment-upload {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.commitments-admin .commitment-actions .btn {
+    min-width: 96px;
+}
+
+.commitments-admin .p-3 {
+    padding: 1rem !important;
+}

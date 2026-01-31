@@ -7,8 +7,9 @@ import Suggestions from './components/Suggestions/Suggestion.jsx';
 import Login from './components/Login/Login.jsx';
 import Admin from './page/Admin/Admin.jsx';
 import Dashboard from './page/Dashboard/Dashboard.jsx';
-import  Suggestion from './page/suggestion/Suggestion.jsx';
-import  Commitments from './page/commitment/Commitment.jsx';
+import Suggestion from './page/suggestion/Suggestion.jsx';
+import AdminCommitments from './page/Admin/CommitmentsAdmin.jsx';
+import PublicCommitment from './page/commitment/Commitment.jsx';
 import './App.css';
 
 const App = () => {
@@ -18,12 +19,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="suggestions" element={<Suggestions />} />
-          <Route path="commitment" element={<Commitment />} />
+        <Route path="commitment" element={<Commitment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="suggestions" element={<Suggestion />} />
-          <Route path="commitments" element={<Commitments />} />
+          <Route path="commitments" element={<AdminCommitments />} />
         </Route>
       </Routes>
     </Router>
