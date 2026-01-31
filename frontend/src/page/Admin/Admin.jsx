@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import "./Admin.css"; // create this file for styling
+import "./Admin.css";
 
 const Admin = () => {
   const navigate = useNavigate();
+  const adminName = "Admin"; // you can replace this dynamically later
 
   const handleLogout = () => {
-    // clear token or user data if you have any
     // localStorage.removeItem("token");
     navigate("/login");
   };
@@ -19,10 +19,10 @@ const Admin = () => {
 
         <ul>
           <li>
-            <Link to="/suggestions">Suggestions</Link>
+            <Link to="/admin/suggestions">Suggestions</Link>
           </li>
           <li>
-            <Link to="/commitment">Commitments</Link>
+            <Link to="/admin/commitments">Commitments</Link>
           </li>
           <li>
             <button className="logout-btn" onClick={handleLogout}>
@@ -32,9 +32,17 @@ const Admin = () => {
         </ul>
       </div>
 
-      {/* Main Content */}
-      <div className="admin-content">
-        <Outlet />
+      {/* Main Content Area */}
+      <div className="admin-content-wrapper">
+        {/* Top Navbar */}
+        <div className="admin-topbar">
+          <h3>Hello, Good Morning {adminName} </h3>
+        </div>
+
+        {/* Dynamic Content */}
+        <div className="admin-content">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

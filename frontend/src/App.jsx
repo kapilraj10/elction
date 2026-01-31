@@ -14,13 +14,14 @@ const App = () => {
       <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/commitment" element={<Commitment />} />
-        <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route path="suggestions" element={<Suggestions />} />
+          <Route path="commitments" element={<Commitment />} />
+        </Route>
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
