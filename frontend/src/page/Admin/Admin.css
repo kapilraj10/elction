@@ -1,53 +1,190 @@
-.admin-container {
-  display: flex;
-  height: 100vh;
+/* Admin.css */
+.admin-wrapper {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Top Navigation */
+.navbar {
+    height: 73px;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand span {
+    font-weight: 300;
+}
+
+/* Search Box */
+.search-box {
+    max-width: 300px;
+}
+
+.search-box .form-control {
+    border-color: #dee2e6;
+}
+
+.search-box .form-control:focus {
+    box-shadow: none;
+    border-color: #86b7fe;
+}
+
+.search-box .input-group-text {
+    background-color: transparent;
+    border-color: #dee2e6;
+}
+
+/* Notifications */
+.btn-light {
+    border-color: #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.btn-light:hover {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+.badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
 }
 
 /* Sidebar */
-.admin-sidebar {
-  width: 250px;
-  background: #1f2937;
-  color: white;
-  padding: 20px;
+.nav-link {
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    border-radius: 0.375rem;
 }
 
-.admin-sidebar ul {
-  list-style: none;
-  padding: 0;
+.nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    transform: translateX(3px);
 }
 
-.admin-sidebar li {
-  margin: 15px 0;
+.nav-link.active {
+    background-color: #0d6efd;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
 }
 
-.admin-sidebar a {
-  color: white;
-  text-decoration: none;
+/* Cards */
+.card {
+    border-radius: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.logout-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
-
-.admin-content-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+/* Welcome Card */
+.card.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
 }
 
-
-.admin-topbar {
-  background: #f3f4f6;
-  padding: 15px 20px;
-  border-bottom: 1px solid #ddd;
+/* Stats Cards */
+.bg-warning {
+    background-color: #ffc107 !important;
 }
 
+.bg-info {
+    background-color: #0dcaf0 !important;
+}
 
-.admin-content {
-  padding: 20px;
+.bg-success {
+    background-color: #198754 !important;
+}
+
+/* Sidebar Icons */
+.nav-link .badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+}
+
+/* Quick Stats */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* Logout Button */
+.btn-outline-danger {
+    border-width: 1px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-box {
+        max-width: 200px;
+    }
+    
+    .col-md-3 {
+        position: fixed;
+        top: 73px;
+        left: 0;
+        height: calc(100vh - 73px);
+        z-index: 1020;
+        background: white;
+        overflow-y: auto;
+    }
+    
+    .col-md-3:not(.d-md-block) {
+        display: none !important;
+    }
+    
+    .col-md-9 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+/* Smooth transitions */
+.col-md-3, .col-md-9 {
+    transition: all 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .nav-link, .btn {
+    animation: fadeIn 0.3s ease-out;
 }
