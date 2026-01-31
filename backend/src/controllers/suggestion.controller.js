@@ -48,7 +48,12 @@ exports.createSuggestion = async (req, res) => {
             expectation,
             fiveYearPlan,
             extraSuggestion,
-            priorities: Array.isArray(priorities) ? priorities : (Array.isArray(priority) ? priority : (priority ? [priority] : [])),
+            // normalize priorities: accept array, comma-separated string, or single value
+            priorities: Array.isArray(priorities)
+                ? priorities
+                : (typeof priorities === 'string' && priorities.includes(','))
+                    ? priorities.split(',').map(p => p.trim()).filter(Boolean)
+                    : (priorities ? [priorities] : (Array.isArray(priority) ? priority : (priority ? [priority] : []))),
         };
 
         const s = await Suggestion.create(toSave);
@@ -60,8 +65,33 @@ exports.createSuggestion = async (req, res) => {
 
 exports.listSuggestions = async (req, res) => {
     try {
-        const items = await Suggestion.find().sort({ createdAt: -1 });
-        res.json(items);
+        // Query params: page, limit, search, status, sort
+        const page = Math.max(parseInt(req.query.page) || 1, 1);
+        const limit = Math.max(parseInt(req.query.limit) || 20, 1);
+        const search = req.query.search ? req.query.search.trim() : null;
+        const sort = req.query.sort || '-createdAt';
+
+        const filter = {};
+        if (search) {
+            const re = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+            filter.$or = [
+                { name: re },
+                { email: re },
+                { mobile: re },
+                { problem: re },
+                { solution: re },
+                { localLevel: re },
+            ];
+        }
+
+        const total = await Suggestion.countDocuments(filter);
+        const items = await Suggestion.find(filter)
+            .sort(sort)
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .exec();
+
+        res.json({ items, meta: { total, page, limit, pages: Math.ceil(total / limit) } });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

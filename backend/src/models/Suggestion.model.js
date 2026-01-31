@@ -17,7 +17,6 @@ const suggestionSchema = new mongoose.Schema({
     fiveYearPlan: { type: String },
     extraSuggestion: { type: String },
     priorities: [{ type: String }],
-    status: { type: String, enum: ['new', 'in_progress', 'resolved'], default: 'new' },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Suggestion', suggestionSchema);
