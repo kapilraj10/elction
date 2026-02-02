@@ -7,6 +7,7 @@ const Commitment = () => {
   const [commitments, setCommitments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [viewingPdf, setViewingPdf] = useState(null);
 
   useEffect(() => {
     const fetchCommitments = async () => {
@@ -92,15 +93,67 @@ const Commitment = () => {
                 </div>
 
                 {commitment.pdfUrl && (
-                  <div className="commitment-actions mt-4">
-                    <a
-                      href={commitment.pdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cta-primary"
-                    >
-                      डाउनलोड (PDF)
-                    </a>
+                  <div className="mt-4">
+                    {viewingPdf === commitment._id ? (
+                      <div>
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                          <h5 className="mb-0">PDF दस्तावेज</h5>
+                          <div className="btn-group">
+                            <button
+                              className="btn btn-sm btn-outline-secondary"
+                              onClick={() => setViewingPdf(null)}
+                            >
+                              बन्द गर्नुहोस्
+                            </button>
+                            <a
+                              href={commitment.pdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-sm btn-outline-primary"
+                            >
+                              नयाँ ट्याबमा खोल्नुहोस्
+                            </a>
+                            <a
+                              href={commitment.pdfUrl}
+                              download
+                              className="btn btn-sm btn-primary"
+                            >
+                              डाउनलोड गर्नुहोस्
+                            </a>
+                          </div>
+                        </div>
+                        <div className="pdf-viewer-container" style={{
+                          width: '100%',
+                          height: '600px',
+                          border: '1px solid #ddd',
+                          borderRadius: '8px',
+                          overflow: 'hidden'
+                        }}>
+                          <iframe
+                            src={commitment.pdfUrl}
+                            style={{ width: '100%', height: '100%', border: 'none' }}
+                            title={`PDF: ${commitment.title}`}
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="commitment-actions">
+                        <button
+                          className="cta-primary me-2"
+                          onClick={() => setViewingPdf(commitment._id)}
+                        >
+                          📄 PDF हेर्नुहोस्
+                        </button>
+                        <a
+                          href={commitment.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-outline-primary"
+                        >
+                          डाउनलोड (PDF)
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
