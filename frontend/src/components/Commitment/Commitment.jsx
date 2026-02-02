@@ -57,11 +57,11 @@ const Commitment = () => {
     <div className="commitment-page container">
       <header className="commitment-header">
         <h1>मेरो प्रतिबद्धता</h1>
-        <p className="subtitle">केश बहादुर बिष्ट — नेपाली कांग्रेस · सल्यान</p>
+        <p className="subtitle">ललित चन्द —राष्ट्रिय स्वतन्त्र पार्टी · सल्यान</p>
       </header>
 
       <section className="commitment-top">
-        <img src="/candidate.svg" alt="केश बहादुर बिष्ट" className="candidate-photo" />
+        <img src="https://i.postimg.cc/zBqFzqdN/4d7c13e9-0be8-4a43-ae94-538876874319.jpg" alt="ललित चन्द" className="candidate-photo" />
         <div className="commitment-profile">
           <h2>एक इमान्दार नेतृत्वका लागि</h2>
           <p>
@@ -142,7 +142,7 @@ const Commitment = () => {
                           className="cta-primary me-2"
                           onClick={() => setViewingPdf(commitment._id)}
                         >
-                          📄 PDF हेर्नुहोस्
+                           PDF हेर्नुहोस्
                         </button>
                         <a
                           href={commitment.pdfUrl}

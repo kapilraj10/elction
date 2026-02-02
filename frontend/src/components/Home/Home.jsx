@@ -23,13 +23,12 @@ export default function Home() {
                             </div>
 
                             <div className="hero-name-section">
-                                <h1 id="hero-heading" className="hero-name">केश बहादुर बिष्ट</h1>
+                                <h1 id="hero-heading" className="hero-name highlighted-name">ललित चन्द</h1>
                                 <p className="hero-tagline">सल्यानको समृद्धि, शिक्षित र स्वस्थ समाज निर्माणमा मेरो दायित्व</p>
                             </div>
 
-                            <div className="party-badge" aria-hidden="true">
-                                <span className="party-icon" aria-hidden="true">🌳</span>
-                                <span className="party-name">नेपाली कांग्रेस</span>
+                            <div className="party-badge rastriya-swatantra" aria-hidden="true">
+                                <span className="party-name">राष्ट्रिय स्वतन्त्र पार्टी</span>
                             </div>
 
                             <div className="hero-cta">
@@ -54,7 +53,7 @@ export default function Home() {
                         </div>
 
                         <aside className="hero-aside" aria-hidden="false">
-                            <img src="/candidate.svg" alt="केश बहादुर बिष्ट" className="home-candidate-photo" loading="lazy" />
+                            <img src="https://i.postimg.cc/zBqFzqdN/4d7c13e9-0be8-4a43-ae94-538876874319.jpg" alt="ललित चन्द" className="home-candidate-photo" loading="lazy" />
                         </aside>
                     </div>
                 </main>
@@ -66,11 +65,7 @@ export default function Home() {
             </header>
 
 
-            <footer className="site-footer" role="contentinfo">
-                <div className="container">
-                    <p>© {new Date().getFullYear()} केश बहादुर बिष्ट — नेपाली कांग्रेस · सल्यान</p>
-                </div>
-            </footer>
+            
         </div>
     );
 }
