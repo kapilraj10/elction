@@ -286,7 +286,7 @@ const Suggestion = () => {
 
           <div className="form-actions">
             <button type="submit" className="btn-primary" disabled={saving}>
-              {saving ? "सेभ हुँदैछ…" : "📨 प्रतिक्रिया पठाउनुहोस्"}
+              {saving ? "सेभ हुँदैछ…" : " प्रतिक्रिया पठाउनुहोस्"}
             </button>
             <button
               type="button"
