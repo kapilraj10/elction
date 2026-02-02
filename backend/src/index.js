@@ -6,16 +6,9 @@ const connectDB = require('./config/db');
 const app = express();
 
 /* CORS configuration */
-// Allow the frontend origin to make requests and allow credentials (cookies, Authorization header)
-const FRONTEND_ORIGIN = process.env.FRONTEND_URL || 'http://localhost:5173';
+// Allow all origins (public)
 const corsOptions = {
-  origin: (origin, callback) => {
-    // allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-    if (origin === FRONTEND_ORIGIN) return callback(null, true);
-    // you can add more allowed origins or implement a whitelist check here
-    return callback(new Error('Not allowed by CORS'));
-  },
+  origin: '*', // Allow all origins
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
