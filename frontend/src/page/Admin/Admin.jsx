@@ -51,16 +51,7 @@ const Admin = () => {
 
                             {/* Navigation */}
                             <nav className="nav flex-column">
-                                <NavLink
-                                    to=""
-                                    end
-                                    className={({ isActive }) =>
-                                        `nav-link d-flex align-items-center mb-2 rounded ${isActive ? 'active bg-primary text-white' : 'text-dark'}`
-                                    }
-                                >
-                            
-                                    Dashboard
-                                </NavLink>
+                               
 
                                 <NavLink
                                     to="suggestions"
