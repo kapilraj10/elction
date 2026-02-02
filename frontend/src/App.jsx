@@ -9,7 +9,6 @@ import Admin from './page/Admin/Admin.jsx';
 import Dashboard from './page/Dashboard/Dashboard.jsx';
 import Suggestion from './page/suggestion/Suggestion.jsx';
 import AdminCommitments from './page/Admin/CommitmentsAdmin.jsx';
-import PublicCommitment from './page/commitment/Commitment.jsx';
 import './App.css';
 
 const App = () => {
