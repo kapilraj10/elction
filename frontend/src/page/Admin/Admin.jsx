@@ -5,7 +5,6 @@ import "./Admin.css";
 const Admin = () => {
     const navigate = useNavigate();
     const adminName = "Admin";
-    // simplified: no collapsed state or notifications
 
     const handleLogout = () => {
         localStorage.clear();
