@@ -5,16 +5,15 @@ const connectDB = require('./config/db');
 
 const app = express();
 
-/* CORS configuration */
-// Allow all origins (public)
+
 const corsOptions = {
-  origin: '*', // Allow all origins
+  origin: 'https://elction-knon.vercel.app', // Frontend origin
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 };
 
-/* middleware */
+
 app.use(cors(corsOptions));
 // enable pre-flight across-the-board
 app.options('*', cors(corsOptions));
