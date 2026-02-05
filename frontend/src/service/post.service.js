@@ -12,6 +12,18 @@ export async function getPosts() {
     return res.json();
 }
 
+export async function getSinglePost(id) {
+    const res = await fetch(BASE ? `${BASE}/api/posts/${id}` : `/api/posts/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({ message: `HTTP ${res.status}` }));
+        throw new Error(err.message || 'Failed to load post');
+    }
+    return res.json();
+}
+
 export async function createPost({ title, content, category, date, images }, token) {
     const fd = new FormData();
     if (title) fd.append('title', title);
@@ -31,4 +43,4 @@ export async function createPost({ title, content, category, date, images }, tok
     return json;
 }
 
-export default { getPosts, createPost };
+export default { getPosts, getSinglePost, createPost };

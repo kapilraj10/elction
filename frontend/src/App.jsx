@@ -7,6 +7,7 @@ import Suggestions from './components/Suggestions/Suggestion.jsx';
 import Login from './components/Login/Login.jsx';
 import About from './pages/About/About.jsx';
 import NewsMedia from './pages/NewsMedia/NewsMedia.jsx';
+import PostDetail from './pages/NewsMedia/PostDetail.jsx';
 import Admin from './page/Admin/Admin.jsx';
 import Dashboard from './page/Dashboard/Dashboard.jsx';
 import Suggestion from './page/suggestion/Suggestion.jsx';
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/news-media" element={<NewsMedia />} />
+        <Route path="/news/:id" element={<PostDetail />} />
         <Route path="suggestions" element={<Suggestions />} />
         <Route path="commitment" element={<Commitment />} />
         <Route path="/login" element={<Login />} />

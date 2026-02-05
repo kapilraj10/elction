@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import postService from '../../service/post.service.js';
 import './NewsMedia.css';
 
 const NewsMedia = () => {
+    const navigate = useNavigate();
     const [newsItems, setNewsItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -74,7 +76,12 @@ const NewsMedia = () => {
                                 <p className="news-date">{news.date}</p>
                                 <h3 className="news-card-title">{news.title}</h3>
                                 <p className="news-excerpt">{news.excerpt}</p>
-                                <button className="read-more-btn">थप पढ्नुहोस् →</button>
+                                <button
+                                    className="read-more-btn"
+                                    onClick={() => navigate(`/news/${news.id}`)}
+                                >
+                                    थप पढ्नुहोस् →
+                                </button>
                             </div>
                         </article>
                     ))}
