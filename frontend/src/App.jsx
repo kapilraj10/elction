@@ -5,6 +5,8 @@ import Home from './components/Home/Home.jsx';
 import Commitment from './components/Commitment/Commitment.jsx';
 import Suggestions from './components/Suggestions/Suggestion.jsx';
 import Login from './components/Login/Login.jsx';
+import About from './pages/About/About.jsx';
+import NewsMedia from './pages/NewsMedia/NewsMedia.jsx';
 import Admin from './page/Admin/Admin.jsx';
 import Dashboard from './page/Dashboard/Dashboard.jsx';
 import Suggestion from './page/suggestion/Suggestion.jsx';
@@ -18,6 +20,8 @@ const App = () => {
       <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/news-media" element={<NewsMedia />} />
         <Route path="suggestions" element={<Suggestions />} />
         <Route path="commitment" element={<Commitment />} />
         <Route path="/login" element={<Login />} />
@@ -27,7 +31,7 @@ const App = () => {
             <ProtectedRoute>
               <Admin />
             </ProtectedRoute>
-          } 
+          }
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="suggestions" element={<Suggestion />} />
