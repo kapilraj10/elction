@@ -21,16 +21,17 @@ exports.createSuggestion = async (req, res) => {
             priority,
             priorities,
         } = req.body;
+        const errors = [];
+        const emailRegex = /\S+@\S+\.\S+/;
+        const mobileRegex = /^[0-9()+\s-]{7,20}$/;
 
-        // basic validation: required fields
-        if (!localLevel || !ward || !problem || !solution) {
-            return res.status(400).json({ message: 'Missing required fields' });
-        }
+        if (!name || !name.toString().trim()) errors.push('Name is required');
+        if (!mobile || !mobileRegex.test(mobile)) errors.push('Valid mobile number is required');
+        if (email && !emailRegex.test(email)) errors.push('Email is invalid');
+        if (!localLevel || !localLevel.toString().trim()) errors.push('localLevel is required');
+        if (!problem || !problem.toString().trim()) errors.push('Problem description is required');
 
-        // require at least an email or mobile so we can follow up
-        if (!mobile) {
-            return res.status(400).json({ message: ' mobile number is required' });
-        }
+        if (errors.length) return res.status(400).json({ message: 'Validation failed', errors });
 
         const toSave = {
             name,
@@ -48,13 +49,17 @@ exports.createSuggestion = async (req, res) => {
             expectation,
             fiveYearPlan,
             extraSuggestion,
-            // normalize priorities: accept array, comma-separated string, or single value
             priorities: Array.isArray(priorities)
                 ? priorities
                 : (typeof priorities === 'string' && priorities.includes(','))
                     ? priorities.split(',').map(p => p.trim()).filter(Boolean)
                     : (priorities ? [priorities] : (Array.isArray(priority) ? priority : (priority ? [priority] : []))),
         };
+        if (toSave.priorities && toSave.priorities.length) {
+            const allowed = ['सडक', 'विद्युत तथा सञ्चार', 'स्वास्थ्य', 'शिक्षा', 'कृषि', 'खानेपानी/सिंचाइ', 'पर्यटन/खेलकूद', 'उद्योग/रोजगारी'];
+            const invalid = toSave.priorities.filter(p => !allowed.includes(p));
+            if (invalid.length) return res.status(400).json({ message: 'Invalid priorities', invalid });
+        }
 
         const s = await Suggestion.create(toSave);
         res.status(201).json(s);
@@ -65,7 +70,6 @@ exports.createSuggestion = async (req, res) => {
 
 exports.listSuggestions = async (req, res) => {
     try {
-        // Query params: page, limit, search, status, sort
         const page = Math.max(parseInt(req.query.page) || 1, 1);
         const limit = Math.max(parseInt(req.query.limit) || 20, 1);
         const search = req.query.search ? req.query.search.trim() : null;
@@ -109,6 +113,20 @@ exports.getSuggestion = async (req, res) => {
 
 exports.updateSuggestion = async (req, res) => {
     try {
+        const { email, mobile, priorities } = req.body;
+        const errors = [];
+        const emailRegex = /\S+@\S+\.\S+/;
+        const mobileRegex = /^[0-9()+\s-]{7,20}$/;
+        if (email && !emailRegex.test(email)) errors.push('Email is invalid');
+        if (mobile && !mobileRegex.test(mobile)) errors.push('Mobile is invalid');
+        if (priorities) {
+            const allowed = ['सडक', 'विद्युत तथा सञ्चार', 'स्वास्थ्य', 'शिक्षा', 'कृषि', 'खानेपानी/सिंचाइ', 'पर्यटन/खेलकूद', 'उद्योग/रोजगारी'];
+            const arr = Array.isArray(priorities) ? priorities : (typeof priorities === 'string' ? priorities.split(',').map(p => p.trim()) : [priorities]);
+            const invalid = arr.filter(p => !allowed.includes(p));
+            if (invalid.length) errors.push('Invalid priorities: ' + invalid.join(', '));
+        }
+        if (errors.length) return res.status(400).json({ message: 'Validation failed', errors });
+
         const s = await Suggestion.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!s) return res.status(404).json({ message: 'Not found' });
         res.json(s);
