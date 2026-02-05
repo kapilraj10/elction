@@ -9,6 +9,7 @@ import Admin from './page/Admin/Admin.jsx';
 import Dashboard from './page/Dashboard/Dashboard.jsx';
 import Suggestion from './page/suggestion/Suggestion.jsx';
 import AdminCommitments from './page/Admin/CommitmentsAdmin.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import './App.css';
 
 const App = () => {
@@ -20,7 +21,14 @@ const App = () => {
         <Route path="suggestions" element={<Suggestions />} />
         <Route path="commitment" element={<Commitment />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          } 
+        >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="suggestions" element={<Suggestion />} />
           <Route path="commitments" element={<AdminCommitments />} />
