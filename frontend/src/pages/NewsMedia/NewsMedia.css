@@ -1,10 +1,7 @@
-.news-media-container {
-    min-height: 100vh;
-    background: #f5f5f5;
-    padding-top: 80px;
-}
+
 
 .news-hero {
+    margin-top: 10px;
     background: linear-gradient(135deg, #1E88B5 0%, #0D7EBA 50%, #0872A8 100%);
     color: white;
     padding: 4rem 2rem;
