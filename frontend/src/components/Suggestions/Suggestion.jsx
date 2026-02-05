@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import "../../App.css";
 import "./Suggestion.css";
 import locations from "../../data/locations.json";
+import { toast } from "react-hot-toast";
+import { validateSuggestion, postSuggestion } from "../../service/suggestion.service";
 
 const priorityOptions = [
   "सडक",
@@ -17,7 +19,7 @@ const priorityOptions = [
 const emptyData = {
   name: "",
   email: "",
-  // address fields: prefer structured local level / ward / street
+
   localLevel: "",
   localLevelOther: "",
   ward: "",
@@ -28,9 +30,7 @@ const emptyData = {
   solution: "",
   priority: [],
   policySuggestion: "",
-  youthProgram: "",
-  expectation: "",
-  fiveYearPlan: "",
+
   extraSuggestion: "",
 };
 
@@ -73,77 +73,55 @@ const Suggestion = () => {
     }
   };
 
-  const BASE = import.meta.env.VITE_API_URL || '';
-
-  const postSuggestion = async (data) => {
-    const url = `${BASE}/api/suggestions`;
-    console.log('Posting suggestion to', url);
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) {
-      // clone the response so we can attempt multiple readers (json or text)
-      const clone = res.clone();
-      let body;
-      try {
-        body = await res.json();
-      } catch {
-        // fall back to text (use clone to avoid "body already read")
-        try {
-          const text = await clone.text();
-          body = { text };
-        } catch {
-          body = { text: `Unable to read body (status ${res.status})` };
-        }
-      }
-      const message = body && (body.message || body.text) ? (body.message || body.text) : `HTTP ${res.status}`;
-      console.error('postSuggestion non-OK response', res.status, message);
-      const e = new Error(String(message).slice(0, 200)); // keep short
-      e.status = res.status;
-      e.body = body;
-      throw e;
-    }
-    return res.json();
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setStatus(null);
 
-    // Basic validation: ensure required fields are present
-    if (
-      !formData.name ||
-      !formData.localLevel ||
-      (formData.localLevel === "other" && !formData.localLevelOther) ||
-      !formData.ward ||
-      !formData.mobile ||
-      !formData.problem ||
-      !formData.email
-    ) {
-      setStatus({ type: "error", message: "कृपया आवश्यक सबै फिल्डहरू भर्नुहोस्।" });
+    // Validate using service
+    const validationErrors = validateSuggestion(formData);
+    if (validationErrors) {
+      validationErrors.forEach((error) => {
+        toast.error(error);
+      });
       setSaving(false);
       return;
     }
 
     try {
       await postSuggestion(formData);
-      setStatus({ type: 'success', message: 'धन्यवाद! तपाईंको सुझाव सुरक्षित भयो।' });
+      toast.success("धन्यवाद! तपाईंको सुझाव सुरक्षित भयो।");
+      setStatus({ type: "success", message: "धन्यवाद! तपाईंको सुझाव सुरक्षित भयो।" });
       setFormData({ ...emptyData });
       if (formRef.current) formRef.current.reset();
     } catch (err) {
-      console.error('postSuggestion failed', err);
-      // if network or server error, fallback to localStorage to avoid data loss
-      const fallback = saveToLocal(formData);
-      if (fallback) {
-        setStatus({ type: 'success', message: 'इंटरनेट नभए स्थानीय रूपमा सुरक्षित गरियो — पछि सिङ्क गरिनेछ।' });
-        setFormData({ ...emptyData });
-        if (formRef.current) formRef.current.reset();
+      console.error("postSuggestion failed", err);
+
+      // Check if server returned validation errors
+      if (err.errors && Array.isArray(err.errors) && err.errors.length > 0) {
+        err.errors.forEach((error) => {
+          toast.error(error);
+        });
+        setStatus({ type: "error", message: "कृपया त्रुटिहरू ठीक गर्नुहोस्।" });
+      } else if (err.body && err.body.invalid) {
+        toast.error("Invalid priorities: " + JSON.stringify(err.body.invalid));
+        setStatus({ type: "error", message: "Invalid priorities provided." });
       } else {
-        const msg = err && err.message ? err.message : 'सेभ गर्दा समस्या आयो — कृपया पुन: प्रयास गर्नुहोस्।';
-        setStatus({ type: 'error', message: msg });
+        // Network or server error - fallback to localStorage
+        const fallback = saveToLocal(formData);
+        if (fallback) {
+          toast.success("इंटरनेट नभए स्थानीय रूपमा सुरक्षित गरियो — पछि सिङ्क गरिनेछ।");
+          setStatus({
+            type: "success",
+            message: "इंटरनेट नभए स्थानीय रूपमा सुरक्षित गरियो — पछि सिङ्क गरिनेछ।",
+          });
+          setFormData({ ...emptyData });
+          if (formRef.current) formRef.current.reset();
+        } else {
+          const msg = err.message || "सेभ गर्दा समस्या आयो — कृपया पुन: प्रयास गर्नुहोस्।";
+          toast.error(msg);
+          setStatus({ type: "error", message: msg });
+        }
       }
     } finally {
       setSaving(false);
@@ -154,7 +132,7 @@ const Suggestion = () => {
     <div className="suggestion-page container">
       <div className="suggestion-card">
         <header className="suggestion-header">
-          <h1>🗳️ मतदाताका सुझाव</h1>
+          <h1> मतदाताका सुझाव</h1>
           <p className="subtitle">सल्यानका योजनाहरूमा तपाईंको आवाज महत्त्वपूर्ण छ — कृपया आफ्नो प्रतिक्रिया साझा गर्नुहोस्।</p>
         </header>
 
@@ -179,7 +157,7 @@ const Suggestion = () => {
             </label>
 
             <label>
-              इमेल  *
+              इमेल
               <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="you@gmail.com" required />
             </label>
           </div>
@@ -236,7 +214,7 @@ const Suggestion = () => {
           </label>
 
           <label>
-            समाधानका लागि सुझाव *
+            समाधानका लागि सुझाव
             <textarea name="solution" value={formData.solution} onChange={handleChange} required />
           </label>
 
@@ -262,42 +240,16 @@ const Suggestion = () => {
             <textarea name="policySuggestion" value={formData.policySuggestion} onChange={handleChange} required />
           </label>
 
-          <div className="row two-cols">
-            <label>
-              युवा लक्षित कार्यक्रम *
-              <textarea name="youthProgram" value={formData.youthProgram} onChange={handleChange} required />
-            </label>
 
-            <label>
-              निर्वाचित नेताबाट अपेक्षा *
-              <textarea name="expectation" value={formData.expectation} onChange={handleChange} required />
-            </label>
-          </div>
 
           <label>
-            आगामी ५ वर्षभित्र गर्नुपर्ने काम *
-            <textarea name="fiveYearPlan" value={formData.fiveYearPlan} onChange={handleChange} required />
-          </label>
-
-          <label>
-            थप सुझाव (छैन भने "छैन") *
+            थप सुझाव
             <textarea name="extraSuggestion" value={formData.extraSuggestion} onChange={handleChange} required />
           </label>
 
           <div className="form-actions">
             <button type="submit" className="btn-primary" disabled={saving}>
               {saving ? "सेभ हुँदैछ…" : " प्रतिक्रिया पठाउनुहोस्"}
-            </button>
-            <button
-              type="button"
-              className="btn-ghost"
-              onClick={() => {
-                setFormData({ ...emptyData });
-                setStatus(null);
-                if (formRef.current) formRef.current.reset();
-              }}
-            >
-              रिसेट
             </button>
           </div>
         </form>

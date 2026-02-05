@@ -45,9 +45,6 @@ exports.createSuggestion = async (req, res) => {
             problem,
             solution,
             policySuggestion,
-            youthProgram,
-            expectation,
-            fiveYearPlan,
             extraSuggestion,
             priorities: Array.isArray(priorities)
                 ? priorities
