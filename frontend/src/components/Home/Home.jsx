@@ -5,7 +5,6 @@ import "./Home.css";
 export default function Home() {
     const navigate = useNavigate();
 
-    // navigation handled via react-router; remove unused scroll helper
 
     return (
         <div className="home-hero" aria-labelledby="hero-heading">

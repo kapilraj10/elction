@@ -1,1000 +1,214 @@
-/* ===== HERO SECTION - राष्ट्रिय स्वतन्त्र पार्टी THEME ===== */
-:root {
-    --color-bg: #5ABAE7;
-    --color-ink: #0b2130;
-    --color-rastriya-red: #dc2626;
-    --color-rastriya-blue: #5ABAE7;
-    --color-rastriya-dark: #1e3a8a;
-    --color-accent: #dc2626;
-    --color-accent-2: #b91c1c;
-    --color-muted: #ffffff;
-    --max-width: 1100px;
-    --shadow-soft: 0 10px 30px rgba(11, 33, 48, 0.06);
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .home-hero {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg,
-            #5ABAE7 0%,
-            #4AA8D8 50%,
-            #5ABAE7 100%);
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", system-ui, Arial, sans-serif;
 }
 
+/* ===== HERO CONTAINER ===== */
 .hero-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    position: relative;
-    z-index: 2;
-    color: #ffffff;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
 }
 
-/* Background Overlay Pattern - राष्ट्रिय स्वतन्त्र पार्टी Colors */
+/* ===== BLUE OVERLAY BACKGROUND ===== */
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(90, 186, 231, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(90, 186, 231, 0.1) 0%, transparent 70%);
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    linear-gradient(135deg, #1E88B5 0%, #0D7EBA 50%, #0872A8 100%),
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 70%);
 }
 
-/* Quote Section */
-.hero-quote-section {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.hero-quote {
-    font-size: clamp(1.25rem, 3.6vw, 2rem);
-    color: #ffffff;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.2px;
-    opacity: 0.95;
-    animation: fadeInUp 700ms ease-out both;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.quote-divider {
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg,
-            #ffffff 0%,
-            var(--color-rastriya-red) 50%,
-            #ffffff 100%);
-    margin: 1.5rem auto;
-    animation: expandWidth 1.2s ease-out;
-}
-
-/* Name Section - Highlighted "ललित चन्द" */
-.hero-name-section {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.hero-name.highlighted-name {
-    font-size: clamp(2.8rem, 8vw, 6rem);
-    font-weight: 900;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-    margin: 0;
-    padding: 0.5rem 1.5rem;
-    position: relative;
-
-    /* White text with glow for #5ABAE7 background */
-    color: #ffffff;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
-        0 0 50px rgba(220, 38, 38, 0.4),
-        0 4px 15px rgba(0, 0, 0, 0.3);
-
-    animation: highlightPulse 3s ease-in-out infinite, fadeInUp 700ms ease-out 120ms both;
-}
-
-.hero-name.highlighted-name::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(220, 38, 38, 0.1) 100%);
-    border-radius: 15px;
-    z-index: -1;
-    animation: borderGlow 2s ease-in-out infinite;
-}
-
-@keyframes highlightPulse {
-
-    0%,
-    100% {
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
-            0 0 50px rgba(220, 38, 38, 0.4),
-            0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    50% {
-        text-shadow: 0 0 40px rgba(255, 255, 255, 1),
-            0 0 70px rgba(220, 38, 38, 0.6),
-            0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-}
-
-@keyframes borderGlow {
-
-    0%,
-    100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.8;
-        transform: scale(1.02);
-    }
-}
-
-/* Tagline */
-.hero-tagline-section {
-    text-align: center;
-    margin: 2rem 0;
-    animation: fadeInUp 1s ease-out 0.8s both;
-}
-
-.hero-tagline {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    color: #ffffff;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.hero-tagline .highlight {
-    color: var(--color-rastriya-red);
-    font-weight: 700;
-}
-
-/* Party Badge - राष्ट्रिय स्वतन्त्र पार्टी Style */
-.party-badge.rastriya-swatantra {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: linear-gradient(135deg,
-            #ffffff 0%,
-            rgba(255, 255, 255, 0.95) 50%,
-            #ffffff 100%);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(220, 38, 38, 0.5);
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    margin: 1.5rem auto;
-    text-align: center;
-    width: fit-content;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
-        0 4px 15px rgba(220, 38, 38, 0.3);
-    animation: fadeInUp 1s ease-out 1s both, badgePulse 2s ease-in-out infinite;
-}
-
-.party-badge.rastriya-swatantra .party-name {
-    color: #dc2626;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 1.2px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes badgePulse {
-
-    0%,
-    100% {
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
-            0 4px 15px rgba(220, 38, 38, 0.3);
-    }
-
-    50% {
-        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.3),
-            0 4px 25px rgba(220, 38, 38, 0.5);
-    }
-}
-
-/* CTA Buttons - राष्ट्रिय स्वतन्त्र पार्टी Theme */
-.hero-cta {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeInUp 1s ease-out 1.2s both;
-}
-
-.cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg,
-            var(--color-rastriya-red) 0%,
-            #b91c1c 100%);
-    color: #ffffff;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 1rem 2.5rem;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
-}
-
-.cta-primary:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
-    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.6);
-}
-
-.cta-arrow {
-    transition: transform 0.3s ease;
-}
-
-.cta-primary:hover .cta-arrow {
-    transform: translateX(5px);
-}
-
-.cta-secondary {
-    background: rgba(255, 255, 255, 0.9);
-    color: #5ABAE7;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border: 2px solid #ffffff;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.cta-secondary:hover {
-    background: #ffffff;
-    color: #4AA8D8;
-    border-color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
-}
-
-/* Decorative Elements */
-.hero-decoration {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.decoration-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.circle-1 {
-    width: 600px;
-    height: 600px;
-    top: -200px;
-    right: -200px;
-    animation: pulse 8s ease-in-out infinite;
-}
-
-.circle-2 {
-    width: 400px;
-    height: 400px;
-    bottom: -100px;
-    left: -100px;
-    animation: pulse 6s ease-in-out infinite 1s;
-}
-
-.circle-3 {
-    width: 300px;
-    height: 300px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 10s ease-in-out infinite 2s;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.875rem;
-    animation: fadeInUp 1s ease-out 1.5s both;
-}
-
-.scroll-arrow {
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-    animation: bounce 2s ease-in-out infinite;
-}
-
-/* Stats Section */
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.stat-number {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 800;
-    color: #ffffff;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.stat-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    to {
-        opacity: var(--target-opacity, 1);
-        transform: translateX(0);
-    }
-}
-
-@keyframes expandWidth {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 100px;
-    }
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
-
-    50% {
-        transform: scale(1.05);
-        opacity: 0.5;
-    }
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .hero-container {
-        padding: 1rem;
-    }
-
-    .hero-name-section {
-        margin: 1rem 0;
-    }
-
-    .hero-cta {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 1rem;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .hero-stats {
-        gap: 1.5rem;
-    }
-
-    .stat-divider {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .party-badge {
-        padding: 0.5rem 1rem;
-    }
-
-    .party-name {
-        font-size: 0.875rem;
-    }
-}
-
-/* ===== HERO SECTION - WHITE THEME ===== */
-.home-hero {
-    /* ensure full-bleed hero with no unexpected gaps */
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background: #ffffff;
-    color: #0b2130;
-    /* dark slate for primary text */
-    position: relative;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
-
-.hero-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 2rem 2rem 2rem;
-    /* reduce bottom padding slightly */
-    position: relative;
-    z-index: 2;
-}
-
-/* Ensure hero inner content is centered and constrained */
+/* ===== CONTENT ===== */
 .hero-content {
-    width: 100%;
-    max-width: var(--max-content-width, 1100px);
-    margin: 0 auto;
-    padding: 0 1rem;
-    text-align: center;
-    position: relative;
-    z-index: 3;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
 }
 
-/* Hero grid: text + photo on wide screens, stacked on small screens */
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 2rem;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: center;
 }
 
+/* ===== TEXT AREA ===== */
 .hero-text {
-    text-align: left;
+  color: #fff;
 }
 
-.hero-aside {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Soft, subtle overlay to give depth on white */
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 10% 20%, rgba(14, 165, 105, 0.04) 0%, transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(6, 78, 59, 0.03) 0%, transparent 40%);
-    z-index: 1;
-}
-
-/* Quote Section */
 .hero-quote-section {
-    text-align: center;
-    margin-bottom: 1.25rem;
+  margin-bottom: 25px;
 }
 
 .hero-quote {
-    font-size: clamp(1.3rem, 3.6vw, 2rem);
-    color: #0b2130;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.4px;
-    text-shadow: none;
-    opacity: 0.95;
+  font-size: 28px;
+  font-weight: 600;
+  opacity: 0.95;
 }
 
 .quote-divider {
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #0b8b5a, transparent);
-    margin: 1rem auto;
+  width: 60px;
+  height: 4px;
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
-/* Name Section - Clean bold repetition */
-.hero-name-section {
-    text-align: center;
-    margin: 1.5rem 0;
-}
-
+/* ===== NAME ===== */
 .hero-name {
-    font-size: clamp(2.4rem, 8vw, 5.5rem);
-    font-weight: 800;
-    text-transform: none;
-    letter-spacing: 0.02em;
-    line-height: 0.95;
-    margin: 0;
-    color: rgba(11, 33, 48, 0.08);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
-.hero-name:nth-child(3) {
-    color: #0b2130;
-    opacity: 1;
-}
-
-/* Tagline */
-.hero-tagline-section {
-    text-align: center;
-    margin: 1rem 0 1.5rem 0;
+.highlighted-name {
+  color: #ffffff;
 }
 
 .hero-tagline {
-    font-size: clamp(1rem, 2.6vw, 1.25rem);
-    color: #133240;
-    font-weight: 600;
-    letter-spacing: 0.6px;
+  margin-top: 15px;
+  font-size: 18px;
+  max-width: 600px;
+  opacity: 0.95;
 }
 
-.hero-tagline .highlight {
-    color: #0b8b5a;
-    /* green accent */
-    font-weight: 800;
-}
-
-/* Party Badge */
+/* ===== PARTY BADGE ===== */
 .party-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #f0fbf6;
-    border: 1px solid #d7f0e1;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    margin: 1rem 0;
-    box-shadow: var(--shadow-soft);
-}
-
-/* Candidate photo in hero */
-.home-candidate-photo {
-    width: 220px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 4px solid #f7fff8;
-    box-shadow: 0 12px 30px rgba(11, 33, 48, 0.08);
-    margin: 1rem auto;
-    display: block;
-    background: #fbfffb;
-}
-
-@media (max-width: 720px) {
-    .home-candidate-photo {
-        width: 140px;
-        height: 140px;
-    }
-}
-
-@media (max-width: 980px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-text {
-        text-align: center;
-    }
-
-    .hero-aside {
-        margin-top: 1rem;
-    }
-}
-
-/* Respect user's reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-.party-icon {
-    font-size: 1.25rem;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 999px;
+  font-weight: 600;
 }
 
 .party-name {
-    color: #0b6b45;
-    font-weight: 700;
-    font-size: 0.95rem;
+  font-size: 14px;
 }
 
-/* CTA Buttons */
+/* ===== BUTTONS ===== */
 .hero-cta {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  gap: 16px;
+  margin-top: 35px;
+  flex-wrap: wrap;
 }
 
 .cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.85rem 1.4rem;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
-    box-shadow: 0 8px 26px rgba(11, 139, 90, 0.12);
+  background: #ffffff;
+  color: #0D7EBA;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
 }
 
 .cta-primary:hover {
-    transform: translateY(-3px);
-}
-
-.cta-arrow {
-    transition: transform 0.2s ease;
-}
-
-.cta-primary:hover .cta-arrow {
-    transform: translateX(4px);
+  transform: translateY(-2px);
 }
 
 .cta-secondary {
-    background: transparent;
-    color: #133240;
-    font-size: 0.98rem;
-    font-weight: 700;
-    padding: 0.72rem 1.3rem;
-    border: 2px solid #e6f3ee;
-    border-radius: 999px;
-    cursor: pointer;
-}
-
-/* Focus styles for accessibility */
-.cta-primary:focus-visible,
-.cta-secondary:focus-visible {
-    outline: 3px solid rgba(11, 139, 90, 0.18);
-    outline-offset: 4px;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
 }
 
 .cta-secondary:hover {
-    background: #f8fffb;
+  background: rgba(255,255,255,0.15);
 }
 
-/* Decorative Elements - subtle */
-.hero-decoration {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+/* ===== IMAGE ===== */
+.hero-aside {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.decoration-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(11, 33, 48, 0.04);
-    background: rgba(11, 33, 48, 0.02);
+.home-candidate-photo {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* ===== DECORATION ===== */
+.hero-decoration .decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
 }
 
 .circle-1 {
-    width: 520px;
-    height: 520px;
-    top: -180px;
-    right: -180px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.08);
+  top: -80px;
+  right: -80px;
 }
 
 .circle-2 {
-    width: 360px;
-    height: 360px;
-    bottom: -100px;
-    left: -100px;
-}
-
-.circle-3 {
-    width: 260px;
-    height: 260px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: rgba(11, 33, 48, 0.6);
-    font-size: 0.85rem;
-}
-
-.scroll-arrow {
-    margin-top: 0.4rem;
-    font-size: 1.25rem;
-}
-
-/* Stats Section */
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding: 1.5rem;
-    background: #ffffff;
-    border-top: 1px solid #f0f6f4;
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.stat-number {
-    font-size: clamp(1.25rem, 3.5vw, 2rem);
-    font-weight: 800;
-    color: #0b2130;
-}
-
-.stat-label {
-    font-size: 0.825rem;
-    color: #4b6470;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
-.stat-divider {
-    width: 1px;
-    height: 40px;
-    background: #eef6f3;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-
-    to {
-        opacity: var(--target-opacity, 1);
-        transform: translateX(0);
-    }
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.06);
+  bottom: -60px;
+  left: -60px;
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .hero-container {
-        padding: 1.5rem;
-    }
-
-    .hero-name {
-        font-size: clamp(2rem, 10vw, 4rem);
-    }
-
-    .hero-cta {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 1rem;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .hero-stats {
-        gap: 1rem;
-    }
-
-    .stat-divider {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .party-badge {
-        padding: 0.4rem 0.8rem;
-    }
-
-
-    /* small subtle entrance for hero elements */
-    .hero-text>* {
-        transform-origin: top left;
-        will-change: transform, opacity;
-    }
-
-    @media (max-width: 480px) {
-        .hero-quote {
-            font-size: 1rem;
-        }
-    }
-
-    .party-name {
-        font-size: 0.85rem;
-    }
-}
-
-/* ===== NEW SECTION STYLES ===== */
-.page-sections {
-    background: #ffffff;
-    color: #0b2130;
-}
-
-.section.container {
-    max-width: 980px;
-    margin: 0.75rem auto 2.5rem auto;
-    /* reduce top margin to tighten gap after hero */
-    padding: 1.25rem;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    color: #0b2130;
-    margin-bottom: 0.75rem;
-    font-weight: 800;
-}
-
-.section-lead p {
-    color: #23404a;
-    line-height: 1.6;
-    margin: 0.5rem 0;
-}
-
-.bullet-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 0 0;
-}
-
-.bullet-item {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #f0f6f4;
-    color: #18323a;
-}
-
-.section-conclusion {
-    margin-top: 1rem;
-    font-weight: 700;
-    color: #0b6b45;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.card {
-    background: #fbfffb;
-    padding: 1rem;
-    border: 1px solid #eef6f3;
-    border-radius: 8px;
-}
-
-/* Suggestion form styles */
-.suggestion-form label {
-    display: block;
-    margin-bottom: 0.75rem;
-    color: #0b2130;
-    font-weight: 600;
-}
-
-.suggestion-form input,
-.suggestion-form textarea {
-    width: 100%;
-    padding: 0.6rem 0.75rem;
-    border: 1px solid #e6f3ee;
-    border-radius: 6px;
-    margin-top: 0.35rem;
-    font-family: inherit;
-}
-
-.suggestion-form textarea {
-    resize: vertical;
-}
-
-.card h4 {
-    margin: 0 0 0.5rem 0;
-    color: #0b2130;
-}
-
-.site-footer {
-    background: rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem 0;
-    text-align: center;
-    color: #ffffff;
-    backdrop-filter: blur(10px);
-}
-
 @media (max-width: 900px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-size: 46px;
+  }
+
+  .hero-quote {
+    font-size: 22px;
+  }
+
+  .hero-aside {
+    margin-top: 30px;
+  }
+
+  .home-candidate-photo {
+    max-width: 260px;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
 }
