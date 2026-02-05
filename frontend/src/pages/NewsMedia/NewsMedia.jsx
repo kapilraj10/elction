@@ -1,65 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import postService from '../../service/post.service.js';
 import './NewsMedia.css';
 
 const NewsMedia = () => {
-    const [newsItems] = useState([
-        {
-            id: 1,
-            title: 'सल्यानमा विकास परियोजनाहरूको सुरुवात',
-            date: 'फागुन २, २०८२',
-            category: 'विकास',
-            image: 'https://via.placeholder.com/400x250?text=News+1',
-            excerpt: 'सल्यान जिल्लामा नयाँ विकास परियोजनाहरूको सुरुवात भएको छ। यी परियोजनाहरूले स्थानीय समुदायलाई प्रत्यक्ष फाइदा पुर्‍याउने अपेक्षा गरिएको छ।'
-        },
-        {
-            id: 2,
-            title: 'शिक्षा क्षेत्रमा सुधारका लागि नयाँ योजना',
-            date: 'माघ २८, २०८२',
-            category: 'शिक्षा',
-            image: 'https://via.placeholder.com/400x250?text=News+2',
-            excerpt: 'सल्यानको शिक्षा क्षेत्रमा गुणस्तरीय सुधार ल्याउन नयाँ योजनाहरू घोषणा गरिएको छ।'
-        },
-        {
-            id: 3,
-            title: 'स्वास्थ्य सेवा विस्तार कार्यक्रम',
-            date: 'माघ २५, २०८२',
-            category: 'स्वास्थ्य',
-            image: 'https://via.placeholder.com/400x250?text=News+3',
-            excerpt: 'सल्यानमा स्वास्थ्य सेवा विस्तार गर्न आधुनिक स्वास्थ्य केन्द्रहरू स्थापना गरिने।'
-        },
-        {
-            id: 4,
-            title: 'कृषि क्षेत्रमा नयाँ प्रविधिको प्रयोग',
-            date: 'माघ २०, २०८२',
-            category: 'कृषि',
-            image: 'https://via.placeholder.com/400x250?text=News+4',
-            excerpt: 'किसानहरूलाई आधुनिक कृषि प्रविधिको तालिम प्रदान गरिने कार्यक्रम सुरु भएको छ।'
-        },
-        {
-            id: 5,
-            title: 'युवा रोजगारी कार्यक्रमको शुभारम्भ',
-            date: 'माघ १५, २०८२',
-            category: 'रोजगारी',
-            image: 'https://via.placeholder.com/400x250?text=News+5',
-            excerpt: 'सल्यानका युवाहरूलाई रोजगारीको अवसर प्रदान गर्न विशेष कार्यक्रम सञ्चालनमा आएको छ।'
-        },
-        {
-            id: 6,
-            title: 'पूर्वाधार विकास परियोजनाहरू',
-            date: 'माघ १०, २०८२',
-            category: 'पूर्वाधार',
-            image: 'https://via.placeholder.com/400x250?text=News+6',
-            excerpt: 'सल्यानमा सडक, पुल र अन्य पूर्वाधार विकासका परियोजनाहरू तीव्र गतिमा अगाडि बढेका छन्।'
-        }
-    ]);
+    const [newsItems, setNewsItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const [selectedCategory, setSelectedCategory] = useState('सबै');
-
-    const categories = ['सबै', 'विकास', 'शिक्षा', 'स्वास्थ्य', 'कृषि', 'रोजगारी', 'पूर्वाधार'];
+    const categories = useMemo(() => {
+        const uniq = Array.from(new Set(newsItems.map(n => n.category).filter(Boolean)));
+        return ['सबै', ...uniq];
+    }, [newsItems]);
 
     const filteredNews = selectedCategory === 'सबै'
         ? newsItems
         : newsItems.filter(item => item.category === selectedCategory);
+
+    useEffect(() => {
+        let active = true;
+        postService.getPosts()
+            .then(data => {
+                if (!active) return;
+                const mapped = (Array.isArray(data) ? data : []).map(p => ({
+                    id: p._id,
+                    title: p.title,
+                    date: p.date,
+                    category: p.category || 'समाचार',
+                    image: (p.images && p.images.find(i => i.isPrimary)?.url) || (p.images?.[0]?.url) || '',
+                    excerpt: p.content?.slice(0, 160) + (p.content && p.content.length > 160 ? '…' : ''),
+                }));
+                setNewsItems(mapped);
+            })
+            .catch(err => setError(err.message || 'Failed to load'))
+            .finally(() => setLoading(false));
+        return () => { active = false; };
+    }, []);
 
     return (
         <div className="news-media-container">
@@ -82,7 +58,13 @@ const NewsMedia = () => {
                 </div>
 
                 <div className="news-grid">
-                    {filteredNews.map((news) => (
+                    {loading && (
+                        <div className="no-news"><p>लोड भइरहेछ…</p></div>
+                    )}
+                    {error && (
+                        <div className="no-news"><p className="text-danger">{error}</p></div>
+                    )}
+                    {!loading && !error && filteredNews.map((news) => (
                         <article key={news.id} className="news-card">
                             <div className="news-image-wrapper">
                                 <img src={news.image} alt={news.title} className="news-image" />
@@ -98,7 +80,7 @@ const NewsMedia = () => {
                     ))}
                 </div>
 
-                {filteredNews.length === 0 && (
+                {!loading && !error && filteredNews.length === 0 && (
                     <div className="no-news">
                         <p>यस श्रेणीमा कुनै समाचार भेटिएन।</p>
                     </div>
