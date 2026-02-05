@@ -28,8 +28,8 @@ exports.createSuggestion = async (req, res) => {
         }
 
         // require at least an email or mobile so we can follow up
-        if (!email && !mobile) {
-            return res.status(400).json({ message: 'Either email or mobile is required' });
+        if (!mobile) {
+            return res.status(400).json({ message: ' mobile number is required' });
         }
 
         const toSave = {
