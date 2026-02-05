@@ -51,7 +51,16 @@ const Admin = () => {
 
                             {/* Navigation */}
                             <nav className="nav flex-column">
-                               
+
+                                <NavLink
+                                    to="dashboard"
+                                    className={({ isActive }) =>
+                                        `nav-link d-flex align-items-center mb-2 rounded ${isActive ? 'active bg-primary text-white' : 'text-dark'}`
+                                    }
+                                >
+                                    <span className="me-2"></span>
+                                    Dashboard
+                                </NavLink>
 
                                 <NavLink
                                     to="suggestions"
@@ -61,7 +70,7 @@ const Admin = () => {
                                 >
                                     <span className="me-2"></span>
                                     Suggestions
-                                
+
                                 </NavLink>
 
                                 <NavLink
@@ -73,9 +82,19 @@ const Admin = () => {
                                     <span className="me-2"></span>
                                     Commitment
                                 </NavLink>
+
+                                <NavLink
+                                    to="posts"
+                                    className={({ isActive }) =>
+                                        `nav-link d-flex align-items-center mb-2 rounded ${isActive ? 'active bg-primary text-white' : 'text-dark'}`
+                                    }
+                                >
+                                    <span className="me-2"></span>
+                                    Posts
+                                </NavLink>
                             </nav>
 
-                          
+
 
                             {/* Logout Button */}
                             <button
