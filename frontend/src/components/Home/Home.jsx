@@ -26,7 +26,7 @@ export default function Home() {
                                 <p className="hero-tagline">सल्यानको समृद्धि, शिक्षित र स्वस्थ समाज निर्माणमा मेरो दायित्व</p>
                             </div>
 
-                            <div className="party-badge rastriya-swatantra" aria-hidden="true">
+                            <div className="party-badge rastriya-swatantra " aria-hidden="true">
                                 <span className="party-name">राष्ट्रिय स्वतन्त्र पार्टी</span>
                             </div>
 
