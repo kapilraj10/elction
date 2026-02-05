@@ -178,9 +178,6 @@ const Suggestion = () => {
         'Solution': suggestion.solution || '-',
         'Priorities': Array.isArray(suggestion.priorities) ? suggestion.priorities.join(', ') : '-',
         'Policy Suggestion': suggestion.policySuggestion || '-',
-        'Youth Program': suggestion.youthProgram || '-',
-        'Expectation': suggestion.expectation || '-',
-        'Five Year Plan': suggestion.fiveYearPlan || '-',
         'Extra Suggestion': suggestion.extraSuggestion || '-',
         'Submitted Date': formatDate(suggestion.createdAt)
       }));
@@ -202,9 +199,6 @@ const Suggestion = () => {
         { wch: 40 }, // Solution
         { wch: 30 }, // Priorities
         { wch: 40 }, // Policy Suggestion
-        { wch: 30 }, // Youth Program
-        { wch: 30 }, // Expectation
-        { wch: 40 }, // Five Year Plan
         { wch: 30 }, // Extra Suggestion
         { wch: 20 }  // Submitted Date
       ];
@@ -453,15 +447,6 @@ const Suggestion = () => {
 
                                   <dt>Street/Ward</dt>
                                   <dd>{suggestion.street || '-'} {suggestion.ward ? `Ward ${suggestion.ward}` : ''}</dd>
-
-                                  <dt>Expectation</dt>
-                                  <dd>{suggestion.expectation || '-'}</dd>
-
-                                  <dt>5-Year Plan</dt>
-                                  <dd>{suggestion.fiveYearPlan || '-'}</dd>
-
-                                  <dt>Youth Program</dt>
-                                  <dd>{suggestion.youthProgram || '-'}</dd>
 
                                   {suggestion.priorities && suggestion.priorities.length > 0 && (
                                     <>
