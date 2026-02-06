@@ -139,9 +139,9 @@
 .contact-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.5rem;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 12px;
     border: 2px solid transparent;
@@ -156,12 +156,24 @@
     box-shadow: 0 3px 15px rgba(30, 136, 181, 0.2);
 }
 
+.contact-icon {
+    font-size: 2rem;
+    color: #1E88B5;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon i {
+    font-size: 2rem;
+}
+
 .contact-details {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    text-align: center;
-    align-items: center;
+    text-align: left;
 }
 
 .contact-details strong {
