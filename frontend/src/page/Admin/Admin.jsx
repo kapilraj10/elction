@@ -92,9 +92,17 @@ const Admin = () => {
                                     <span className="me-2"></span>
                                     Posts
                                 </NavLink>
+
+                                <NavLink
+                                    to="about"
+                                    className={({ isActive }) =>
+                                        `nav-link d-flex align-items-center mb-2 rounded ${isActive ? 'active bg-primary text-white' : 'text-dark'}`
+                                    }
+                                >
+                                    <span className="me-2"></span>
+                                    About
+                                </NavLink>
                             </nav>
-
-
 
                             {/* Logout Button */}
                             <button

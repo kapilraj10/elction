@@ -13,6 +13,7 @@ import Dashboard from './page/Dashboard/Dashboard.jsx';
 import Suggestion from './page/suggestion/Suggestion.jsx';
 import AdminCommitments from './page/Admin/CommitmentsAdmin.jsx';
 import PostsAdmin from './page/Admin/PostsAdmin.jsx';
+import AboutAdmin from './page/Admin/AboutAdmin.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import './App.css';
 
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="suggestions" element={<Suggestion />} />
           <Route path="commitments" element={<AdminCommitments />} />
           <Route path="posts" element={<PostsAdmin />} />
+          <Route path="about" element={<AboutAdmin />} />
         </Route>
       </Routes>
     </Router>
