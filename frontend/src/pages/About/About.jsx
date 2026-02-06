@@ -104,6 +104,22 @@ const About = () => {
                         <p>
                             तपाईंका सुझाव र विचारहरू हामीलाई अत्यन्त महत्वपूर्ण छन्। हामीसँग सम्पर्कमा रहनुहोस् र सल्यानको विकासमा आफ्नो योगदान दिनुहोस्।
                         </p>
+                        <div className="contact-info">
+                            <div className="contact-item">
+                                <span className="contact-icon">📧</span>
+                                <div className="contact-details">
+                                    <strong>इमेल:</strong>
+                                    <a href="mailto:lalitchand@example.com">lalitchand@example.com</a>
+                                </div>
+                            </div>
+                            <div className="contact-item">
+                                <span className="contact-icon">📱</span>
+                                <div className="contact-details">
+                                    <strong>फोन:</strong>
+                                    <a href="tel:+9779800000000">+977 980-0000000</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
