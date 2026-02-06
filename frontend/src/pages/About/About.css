@@ -55,6 +55,8 @@
     gap: 2rem;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
 }
 
 .profile-image {
