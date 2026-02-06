@@ -106,18 +106,12 @@ const About = () => {
                         </p>
                         <div className="contact-info">
                             <div className="contact-item">
-                                <span className="contact-icon">
-                                    <i className="bi bi-envelope-fill"></i>
-                                </span>
                                 <div className="contact-details">
                                     <strong>इमेल:</strong>
                                     <a href="mailto:lalitchand@example.com">lalitchand@example.com</a>
                                 </div>
                             </div>
                             <div className="contact-item">
-                                <span className="contact-icon">
-                                    <i className="bi bi-telephone-fill"></i>
-                                </span>
                                 <div className="contact-details">
                                     <strong>फोन:</strong>
                                     <a href="tel:+9779800000000">+977 980-0000000</a>
