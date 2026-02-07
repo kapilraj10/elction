@@ -7,7 +7,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: 'https://elction-knon.vercel.app', // Frontend origin
+  origin: 'https://www.lalitchand.com/', // Frontend origin
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
