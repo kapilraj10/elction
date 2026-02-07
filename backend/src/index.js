@@ -7,7 +7,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: 'www.lalitchand.com/', // Frontend origin
+  origin: true,
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
@@ -15,7 +15,7 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions));
-// enable pre-flight across-the-board
+// enable pre-flight across-the-board for all routes
 app.options('*', cors(corsOptions));
 app.use(express.json());
 
