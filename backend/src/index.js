@@ -7,7 +7,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: 'https://www.lalitchand.com/', // Frontend origin
+  origin: 'www.lalitchand.com/', // Frontend origin
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
