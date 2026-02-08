@@ -88,6 +88,20 @@
     color: #666;
 }
 
+.bio {
+    margin-top: 1rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.bio p {
+    margin-bottom: 0.6rem;
+    color: #444;
+    line-height: 1.6;
+}
+
 .priorities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

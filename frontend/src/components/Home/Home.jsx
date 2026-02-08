@@ -14,7 +14,7 @@ export default function Home() {
                     <div className="hero-grid">
                         <div className="hero-text">
                             <div className="hero-quote-section" role="note">
-                                <p className="hero-quote">"म सल्यान हाँसेको हेर्न चाहन्छु ।"</p>
+                                <p className="hero-quote">"समृद्ध  सल्यान मेरो परिकल्पना ।"</p>
                                 <div className="quote-divider" aria-hidden="true"></div>
                             </div>
 
