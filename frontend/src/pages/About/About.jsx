@@ -117,7 +117,7 @@ const About = () => {
                                 </div>
                                 <div className="contact-details">
                                     <strong>इमेल:</strong>
-                                    <a href="mailto:lalitchand@example.com">lalitchand@example.com</a>
+                                    <a href="mailto:chanda_lalit2007@yahoo.com">chanda_lalit2007@yahoo.com</a>
                                 </div>
                             </div>
                             <div className="contact-item">
@@ -126,7 +126,7 @@ const About = () => {
                                 </div>
                                 <div className="contact-details">
                                     <strong>फोन:</strong>
-                                    <a href="tel:+9779800000000">+977 980-0000000</a>
+                                    <a href="tel:+9779858031221">+977 9858031221</a>
                                 </div>
                             </div>
                         </div>
