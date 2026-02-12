@@ -117,7 +117,7 @@ const About = () => {
                                 </div>
                                 <div className="contact-details">
                                     <strong>इमेल:</strong>
-                                    <a href="mailto:chanda_lalit2007@yahoo.com">chanda_lalit2007@yahoo.com</a>
+                                    <a href="mailto:chand_lalit2007@yahoo.com">chanda_lalit2007@yahoo.com</a>
                                 </div>
                             </div>
                             <div className="contact-item">
